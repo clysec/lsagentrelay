@@ -10,6 +10,11 @@ lsagentrelay /path/to/config.yaml
 ```
 
 ### Env
+
+Available environment variables:
+- LSAGENTRELAY_CONFIG: Path to the config.yaml file
+- LSAGENTRELAY_DEBUG: Enable debug logging (default: false)
+
 ```
 # CLI
 LSAGENTRELAY_CONFIG=/path/to/config.yaml lsagentrelay

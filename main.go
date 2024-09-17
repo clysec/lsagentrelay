@@ -5,11 +5,17 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
+	gofigure "github.com/common-nighthawk/go-figure"
 	"github.com/gorilla/mux"
 )
 
 func main() {
+	fmt.Print("\r\n")
+	gofigure.NewColorFigure("LS AGENT RELAY", "epic", "green", true).Print()
+	fmt.Print("\r\n\r\n\r\n\r\n")
+
 	args := os.Args[1:]
 	if len(args) != 1 {
 		envv := os.Getenv("LSAGENTRELAY_CONFIG")
@@ -25,12 +31,25 @@ func main() {
 	config := Config{}
 	err := config.Read(args[0])
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Configuration file could not be read: ", err)
 		return
 	}
 
+	debugenv := strings.ToLower(os.Getenv("LSAGENTRELAY_DEBUG"))
+	if debugenv != "" {
+		config.Listen.Debug = debugenv == "true" || debugenv == "1" || debugenv == "yes"
+	}
+
 	handler := RequestHandler{
-		Config: config,
+		Config:   config,
+		DebugLog: func(message string, args ...any) {},
+	}
+
+	if config.Listen.Debug {
+		fmt.Println("!! Debug logging enabled !!")
+		handler.DebugLog = func(message string, args ...any) {
+			fmt.Printf(message, args...)
+		}
 	}
 
 	r := mux.NewRouter()

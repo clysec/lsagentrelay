@@ -15,9 +15,10 @@ type Config struct {
 		IgnoreSSL bool   `yaml:"ignore_ssl"`
 	}
 	Listen struct {
-		Port int    `yaml:"port"`
-		Host string `yaml:"host"`
-		Tls  struct {
+		Port  int    `yaml:"port"`
+		Host  string `yaml:"host"`
+		Debug bool   `yaml:"debug"`
+		Tls   struct {
 			Enabled bool   `yaml:"enabled"`
 			Cert    string `yaml:"cert"`
 			Key     string `yaml:"key"`
