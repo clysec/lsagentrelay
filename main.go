@@ -12,9 +12,14 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) != 1 {
-		fmt.Println("Usage: lsagentrelay [config.yaml path]")
-		fmt.Println("Using default config.yaml")
-		args = []string{"config.yaml"}
+		envv := os.Getenv("LSAGENTRELAY_CONFIG")
+		if envv != "" {
+			args = []string{envv}
+		} else {
+			fmt.Println("Usage: lsagentrelay [config.yaml path]")
+			fmt.Println("Using default config.yaml")
+			args = []string{"config.yaml"}
+		}
 	}
 
 	config := Config{}

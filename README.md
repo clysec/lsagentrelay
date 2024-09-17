@@ -4,8 +4,18 @@ An alternative to the cloud service provided by Lansweeper. Listens for requests
 To enable sending data to Lansweeper without opening ports for all servers to the Lansweeper instance. This relay can be deployed anywhere, as long as it can reach the Lansweeper instance.
 
 ## Usage
+### CLI
 ```
 lsagentrelay /path/to/config.yaml
+```
+
+### Env
+```
+# CLI
+LSAGENTRELAY_CONFIG=/path/to/config.yaml lsagentrelay
+
+# Docker
+-e LSAGENTRELAY_CONFIG=/path/to/config.yaml
 ```
 
 ## Configuration

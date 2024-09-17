@@ -1,0 +1,13 @@
+services:
+  lsagentrelay:
+    image: ghcr.io/clysec/lsagentrelay:latest
+    container_name: lsagentrelay
+    restart: always
+    environment:
+      - LSAGENTRELAY_CONFIG=/config.yaml
+    volumes:
+      - ./config.yaml:/config.yaml
+    ports:
+      - 8080:8080
+    networks:
+      - default
