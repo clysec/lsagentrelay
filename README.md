@@ -1,3 +1,15 @@
+# Lansweeper Agent Relay/Proxy
+An alternative to the cloud service provided by Lansweeper. Listens for requests from the agent, rewrites the configuration on the fly and forwards the request to the actual Lansweeper instance.
+
+To enable sending data to Lansweeper without opening ports for all servers to the Lansweeper instance. This relay can be deployed anywhere, as long as it can reach the Lansweeper instance.
+
+## Usage
+```
+lsagentrelay /path/to/config.yaml
+```
+
+## Configuration
+```yaml
 # Lansweeper Server Settings
 lansweeper:
   # URL to the Lansweeper Server
@@ -41,3 +53,5 @@ listen:
 
     # Path to the TLS key file (PEM format)
     key: ""
+
+```
