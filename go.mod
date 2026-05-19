@@ -1,6 +1,6 @@
 module git.hoglandet.se/intern/infrastruktur/lsagentproxy.git
 
-go 1.23.0
+go 1.26.0
 
 require (
 	github.com/clysec/greq v0.2.1
